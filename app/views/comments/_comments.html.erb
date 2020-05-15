@@ -1,0 +1,17 @@
+<h3>Comments</h3>
+<% @post.comments.each do |comment| %>
+    <div>
+        <p>
+            <strong>
+                <% if (user = User.find_by(id:comment.creator)) %>
+                    <%= link_to user.name, profile_path(id:user.id), {:class => 'text-dark'} %>
+                <% else %>
+                    <span class="text-dark">Unknown</span>
+                <% end %>
+            </strong>:
+            <%= comment.body%>
+        </p>
+
+    </div>
+
+<% end %>

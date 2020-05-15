@@ -1,0 +1,9 @@
+<%= render 'custom/posts_navbar' %>
+    <% if @profile %>
+        <p>Username: <strong><%= @profile.name %></strong></h2>
+        <p>Email: <strong><%= @profile.email %></strong></p>
+        <p><i>Creator id: <strong><%= @profile.id %></strong></i></p>
+    <% else %>
+        <p>Unknown user</p>
+    <% end %>
+<hr>

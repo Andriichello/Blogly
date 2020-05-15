@@ -1,0 +1,23 @@
+    <%= render 'custom/empty_navbar' %>
+    <div class="container">
+        <h1 id="Register">Register</h1>
+        <form action="/users" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <label>Name</label>
+            <input type="name" name="user[name]" class="form-control"><br>
+            <label>Email</label>
+            <input type="email" name="user[email]" class="form-control"><br>
+            <label>Password</label>
+            <input type="password" name="user[password]" class="form-control"><br>
+            <label>Password Confirmation</label>
+            <input type="password" name="user[password_confirmation]" class="form-control"><br>
+            <input type="submit" name="submit" class="submit btn btn-primary" value="Submit">
+        </form>
+        <div>
+            <% if flash[:register_errors] %>
+                <% flash[:register_errors].each do |error| %>
+                    <p><%= error %></p>
+                <% end %>
+            <% end %>
+        </div>
+    </div>

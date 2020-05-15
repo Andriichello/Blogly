@@ -1,0 +1,41 @@
+    <%= render 'custom/posts_navbar' %>
+   
+    <div class="container">
+    
+        <h1 class="text-center"><%= link_to 'Blogly Posts', '/posts', {:class => 'text-dark'} %></h1>
+        <form action="/posts" method="GET">
+            <input id="search_input" type="text" placeholder="search..." name="search" class="form-control">
+            <input id="search_submit" type="submit" name="submit" value="search" class="btn btn-secondary">
+            <style>
+                #search_input {
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 50%;     
+                    display: block;
+                }
+
+                #search_submit {
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                    margin-right: auto;
+                    margin-left: auto;
+                    width: 50%;     
+                    display: block;
+                }
+            </style>
+        </form>
+
+        <% @posts.each do |post| %> 
+            <div class="card" style="margin-bottom: 30px; padding: 10px;">
+                <div class="card-title">
+                    <h3><%= post.title %></h3>
+                </div>
+                <p><%= post.body %></p>
+                <% if (user = User.find_by(id:post.creator)) %>
+                    <p><i>Created by: <strong><%= link_to user.name, profile_path(id:user.id), {:class => 'text-dark'} %></strong></i></p>
+                <% end %>
+                 <%= link_to "Read More", post_path(post), {:class => 'btn btn-outline-primary'} %>
+            </div>
+        <% end %>
+
+    </div>

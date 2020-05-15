@@ -1,0 +1,28 @@
+    <%= render 'custom/empty_navbar' %>
+    <div class="container">
+        <form action="/sessions" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <input type="hidden" name="login[email]" class="form-control" value="guest@test.com">
+            <input type="hidden" name="login[password]" class="form-control" value="Guest">
+            <input type="submit" name="submit" class="btn btn-outline-secondary form-control" value="Continue as a Guest" style="">
+        </form>
+        <br><br>
+
+        <h1 id="Login">Login</h1>
+        <form action="/sessions" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <label>Email</label>
+            <input type="email" name="login[email]" class="form-control"><br>
+            <label>Password</label>
+            <input type="password" name="login[password]" class="form-control"><br>
+            <input type="submit" name="submit" class="submit btn btn-primary" value="Submit">
+        </form>
+
+        <div>
+            <% if flash[:login_errors] %>
+                <% flash[:login_errors].each do |error| %>
+                    <p><%= error %></p>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
